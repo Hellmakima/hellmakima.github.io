@@ -1,1 +1,55 @@
-hello world
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to My Funny Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f4;
+            color: #333;
+        }
+        h1 {
+            color: #ff6347;
+        }
+        button {
+            background: #008cba;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #005f73;
+        }
+        .funny-div {
+            margin: 50px auto;
+            padding: 20px;
+            border: 2px dashed #333;
+            background: #ffffe0;
+            width: 50%;
+        }
+    </style>
+</head>
+<body>
+    <h1>😂 Welcome to the Land of Laughs 😂</h1>
+    <p>Click the button below if you think you're brave enough to hear my joke:</p>
+    <button onclick="tellJoke()">Make Me Laugh!</button>
+    <div id="joke" class="funny-div" style="display: none;">
+        Why don’t skeletons fight each other? <br><br> Because they don’t have the guts! 💀
+    </div>
+    <script>
+        function tellJoke() {
+            const jokeDiv = document.getElementById('joke');
+            jokeDiv.style.display = 'block';
+            setTimeout(() => alert("Now laugh or I'll cry!"), 2000);
+        }
+    </script>
+</body>
+</html>
