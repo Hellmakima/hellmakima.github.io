@@ -26,23 +26,20 @@
       user-select: none;
       white-space: nowrap;
       opacity: 0;
-      animation: fadeIn 1s forwards, float 10s ease-in-out infinite;
+      animation: fadeInOut 5s forwards;
     }
 
-    @keyframes fadeIn {
+    @keyframes fadeInOut {
       0% {
         opacity: 0;
-      }
-      100% {
-        opacity: 1;
-      }
-    }
-
-    @keyframes float {
-      0% {
         transform: translate3d(0, 0, 0);
       }
+      50% {
+        opacity: 1;
+        transform: translate3d(var(--end-x//2), var(--end-y//2), 0);
+      }
       100% {
+        opacity: 0;
         transform: translate3d(var(--end-x), var(--end-y), 0);
       }
     }
@@ -52,7 +49,6 @@
       position: absolute;
       top: 0;
       left: 0;
-      z-index: 1; /* Ensure the cube is on top of the words */
     }
   </style>
 </head>
@@ -204,8 +200,7 @@
       const rotation = Math.random() * 360;  // Random rotation angle
       const xPos = Math.random() * 100;  // Random horizontal position
       const yPos = Math.random() * 100;  // Random vertical position
-      const animationDuration = Math.random() * (10 - 5) + 5;  // Random animation duration
-      
+
       const randomX = Math.random() * 200 - 100;  // Random movement range for x-axis
       const randomY = Math.random() * 200 - 100;  // Random movement range for y-axis
 
@@ -214,7 +209,6 @@
       wordElement.style.left = `${xPos}vw`;
       wordElement.style.top = `${yPos}vh`;
       wordElement.style.transform = `rotate(${rotation}deg)`;
-      wordElement.style.animationDuration = `${animationDuration}s`;
 
       // Add custom CSS properties for random movement directions
       wordElement.style.setProperty('--end-x', `${randomX}vw`);
@@ -222,18 +216,11 @@
 
       document.body.appendChild(wordElement);
 
-      // Remove word when it moves off the screen
-      function checkOutOfBounds() {
-        const rect = wordElement.getBoundingClientRect();
-        if (rect.top > window.innerHeight || rect.left > window.innerWidth || rect.bottom < 0 || rect.right < 0) {
-          wordElement.remove();
-        }
-      }
-
-      setInterval(checkOutOfBounds, 100); // Check if the word is out of bounds every 100ms
+      // Remove word after animation
+      setTimeout(() => wordElement.remove(), 5000);
     }
 
-    setInterval(generateWord, 200); // Generate a new word every 200ms, but only if fewer than 20 words exist
+    setInterval(generateWord, 200); // Generate a new word every 200ms
   </script>
 </body>
 </html>
