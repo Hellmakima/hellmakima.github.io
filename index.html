@@ -1,55 +1,239 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to My Funny Page</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-            background: #f4f4f4;
-            color: #333;
-        }
-        h1 {
-            color: #ff6347;
-        }
-        button {
-            background: #008cba;
-            color: white;
-            padding: 10px 20px;
-            font-size: 16px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        button:hover {
-            background: #005f73;
-        }
-        .funny-div {
-            margin: 50px auto;
-            padding: 20px;
-            border: 2px dashed #333;
-            background: #ffffe0;
-            width: 50%;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Floating Cuisines with 3D Cube</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: #2e2e2e;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .word {
+      z-index: 1;
+      position: absolute;
+      font-family: 'Arial', sans-serif;
+      font-size: 20px;
+      color: rgba(255, 255, 255, 0.8);
+      user-select: none;
+      white-space: nowrap;
+      opacity: 0;
+      animation: fadeIn 1s forwards, float 10s ease-in-out infinite;
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    @keyframes float {
+      0% {
+        transform: translate3d(0, 0, 0);
+      }
+      100% {
+        transform: translate3d(var(--end-x), var(--end-y), 0);
+      }
+    }
+
+    canvas {
+      z-index: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1; /* Ensure the cube is on top of the words */
+    }
+  </style>
 </head>
 <body>
-    <h1>😂 Welcome to the Land of Laughs 😂</h1>
-    <p>Click the button below if you think you're brave enough to hear my joke:</p>
-    <button onclick="tellJoke()">Make Me Laugh!</button>
-    <div id="joke" class="funny-div" style="display: none;">
-        Why don’t skeletons fight each other? <br><br> Because they don’t have the guts! 💀
-    </div>
-    <script>
-        function tellJoke() {
-            const jokeDiv = document.getElementById('joke');
-            jokeDiv.style.display = 'block';
-            setTimeout(() => alert("Now laugh or I'll cry!"), 2000);
+
+  <!-- 3D Cube -->
+  <canvas id="cubeCanvas"></canvas>
+  <script>
+    const canvas = document.getElementById('cubeCanvas');
+    const ctx = canvas.getContext('2d');
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    // Cube vertices (3D coordinates)
+    const size = 100;
+    let vertices = [
+      [-size, -size, -size], [size, -size, -size],
+      [size, size, -size], [-size, size, -size],
+      [-size, -size, size], [size, -size, size],
+      [size, size, size], [-size, size, size]
+    ];
+
+    // Cube edges (connecting vertices)
+    const edges = [
+      [0, 1], [1, 2], [2, 3], [3, 0],
+      [4, 5], [5, 6], [6, 7], [7, 4],
+      [0, 4], [1, 5], [2, 6], [3, 7]
+    ];
+
+    let rotationMatrix = [[1, 0, 0], [0, 1, 0], [0, 0, 1]];
+
+    function project(point) {
+      const depth = 500;
+      const perspective = depth / (depth - point[2]);
+      const x = canvas.width / 2 + point[0] * perspective;
+      const y = canvas.height / 2 - point[1] * perspective;
+      return [x, y];
+    }
+
+    function rotateMatrix(axis, angle) {
+      const [x, y, z] = axis;
+      const cosA = Math.cos(angle);
+      const sinA = Math.sin(angle);
+      return [
+        [cosA + x * x * (1 - cosA), x * y * (1 - cosA) - z * sinA, x * z * (1 - cosA) + y * sinA],
+        [y * x * (1 - cosA) + z * sinA, cosA + y * y * (1 - cosA), y * z * (1 - cosA) - x * sinA],
+        [z * x * (1 - cosA) - y * sinA, z * y * (1 - cosA) + x * sinA, cosA + z * z * (1 - cosA)]
+      ];
+    }
+
+    function multiplyMatrices(a, b) {
+      const result = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
+      for (let i = 0; i < 3; i++)
+        for (let j = 0; j < 3; j++)
+          for (let k = 0; k < 3; k++)
+            result[i][j] += a[i][k] * b[k][j];
+      return result;
+    }
+
+    function multiplyMatrixVector(matrix, vector) {
+      return [
+        matrix[0][0] * vector[0] + matrix[0][1] * vector[1] + matrix[0][2] * vector[2],
+        matrix[1][0] * vector[0] + matrix[1][1] * vector[1] + matrix[1][2] * vector[2],
+        matrix[2][0] * vector[0] + matrix[2][1] * vector[1] + matrix[2][2] * vector[2]
+      ];
+    }
+
+    function draw() {
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.2)'; // Semi-transparent background for the cube
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      rotationMatrix = [[1, 0, 0], [0, 1, 0], [0, 0, 1]];
+
+      const rotY = rotateMatrix([0, 1, 0], -mouseX * 0.01);
+      rotationMatrix = multiplyMatrices(rotY, rotationMatrix);
+      const rotX = rotateMatrix([1, 0, 0], -mouseY * 0.01);
+      rotationMatrix = multiplyMatrices(rotX, rotationMatrix);
+
+      const transformedVertices = vertices.map(vertex => multiplyMatrixVector(rotationMatrix, vertex));
+
+      for (const edge of edges) {
+        const p1 = transformedVertices[edge[0]];
+        const p2 = transformedVertices[edge[1]];
+
+        if (p1[2] < 0 && p2[2] < 0) {
+          ctx.setLineDash([5, 5]);
+          ctx.strokeStyle = '#666';
+        } else {
+          ctx.setLineDash([]);
+          ctx.strokeStyle = '#ccc';
         }
-    </script>
+
+        const [x1, y1] = project(p1);
+        const [x2, y2] = project(p2);
+        ctx.beginPath();
+        ctx.moveTo(x1, y1);
+        ctx.lineTo(x2, y2);
+        ctx.stroke();
+      }
+
+      vertices = transformedVertices;
+      requestAnimationFrame(draw);
+    }
+
+    let mouseX = 0, mouseY = 0;
+    canvas.addEventListener('mousemove', (e) => {
+      mouseX = e.movementX;
+      mouseY = e.movementY;
+    });
+
+    draw();
+  </script>
+
+  <!-- Floating Cuisines -->
+  <script>
+    const words = [
+      'Sushi', 'Ramen', 'Pho', 'Biryani', 'Tiramisu', 'Gilab Jamun',
+      'Ice cream', 'Fettuccine Alfredo', 'Loni Dosa', 'Croissant', 'Pineapple Pizza',
+      'Tempura', 'Pad Thai', 'Sashimi', 'Choco-lava cake',
+      'Kimchi', 'Masala Dosa', 'Beef Wellington', 'Chicken Cacciatore', 'Ratatouille', 
+      'Kebabs', 'Custard Tart',
+      'Butter Chicken', 'Chole Bhature', 'Pav Bhaji', 'Aloo Paratha', 'Dal Tadka', 
+      'Malai Kofta', 
+      'Vada Pav', 'Puri Bhaji', 'Hyderabadi Biryani', 'Kachori', 'Gajar Halwa', 'Dhokla',
+      'Bhel Puri', 'Kheer', 'Jalebi', 'Mysore Pak', 'Gulab Jamun', 'Khichdi', 'Baingan Bharta', 
+      'Shahi Tukda', 'Kofta', 'Bhindi Masala', 'Pulao', 'Fried Rice', 
+      'Spring Rolls', 'Chow Mein', 
+      'Sichuan Hot Pot', 'Chinese BBQ Ribs', 
+      'Tandoori Chicken',  'Katsu Curry', 'Apple Pie', 'Mochi', 'Lobster Roll',
+      'Fajitas', 'Risotto', 'Lasagna', 'Tonkatsu', 'Maki Rolls'
+    ];
+
+    function generateWord() {
+      const currentWords = document.querySelectorAll('.word');
+      if (currentWords.length >= 20) {
+        return; // Stop if there are already 20 words
+      }
+
+      const word = words[Math.floor(Math.random() * words.length)];
+      const wordElement = document.createElement('div');
+      wordElement.textContent = word;
+      
+      const size = Math.random() * (40 - 15) + 15;  // Random font size
+      const rotation = Math.random() * 360;  // Random rotation angle
+      const xPos = Math.random() * 100;  // Random horizontal position
+      const yPos = Math.random() * 100;  // Random vertical position
+      const animationDuration = Math.random() * (10 - 5) + 5;  // Random animation duration
+      
+      const randomX = Math.random() * 200 - 100;  // Random movement range for x-axis
+      const randomY = Math.random() * 200 - 100;  // Random movement range for y-axis
+
+      wordElement.classList.add('word');
+      wordElement.style.fontSize = `${size}px`;
+      wordElement.style.left = `${xPos}vw`;
+      wordElement.style.top = `${yPos}vh`;
+      wordElement.style.transform = `rotate(${rotation}deg)`;
+      wordElement.style.animationDuration = `${animationDuration}s`;
+
+      // Add custom CSS properties for random movement directions
+      wordElement.style.setProperty('--end-x', `${randomX}vw`);
+      wordElement.style.setProperty('--end-y', `${randomY}vh`);
+
+      document.body.appendChild(wordElement);
+
+      // Remove word when it moves off the screen
+      function checkOutOfBounds() {
+        const rect = wordElement.getBoundingClientRect();
+        if (rect.top > window.innerHeight || rect.left > window.innerWidth || rect.bottom < 0 || rect.right < 0) {
+          wordElement.remove();
+        }
+      }
+
+      setInterval(checkOutOfBounds, 100); // Check if the word is out of bounds every 100ms
+    }
+
+    setInterval(generateWord, 200); // Generate a new word every 200ms, but only if fewer than 20 words exist
+  </script>
 </body>
 </html>
