@@ -36,11 +36,11 @@
       }
       50% {
         opacity: 1;
-        transform: translate3d(var(--end-x//2), var(--end-y//2), 0);
+        transform: translate3d(var(--end-x), var(--end-y), 0); /* Moved transform to 50% */
       }
       100% {
         opacity: 0;
-        transform: translate3d(var(--end-x), var(--end-y), 0);
+        transform: translate3d(var(--end-x), var(--end-y), 0); /* Kept transform at 100% */
       }
     }
 
@@ -159,9 +159,43 @@
     }
 
     let mouseX = 0, mouseY = 0;
+    let initialTouchX = null;
+    let initialTouchY = null;
+
     canvas.addEventListener('mousemove', (e) => {
       mouseX = e.movementX;
       mouseY = e.movementY;
+    });
+
+    canvas.addEventListener('touchstart', (e) => {
+      if (e.touches.length > 0) {
+        initialTouchX = e.touches[0].clientX;
+        initialTouchY = e.touches[0].clientY;
+      }
+    }, { passive: false }); // Make sure passive is false
+
+    canvas.addEventListener('touchmove', (e) => {
+      e.preventDefault(); // Prevent default touch behavior (scrolling)
+      if (initialTouchX === null || initialTouchY === null) {
+        return;
+      }
+
+      if (e.touches.length > 0) {
+        const currentTouchX = e.touches[0].clientX;
+        const currentTouchY = e.touches[0].clientY;
+
+        mouseX = currentTouchX - initialTouchX;
+        mouseY = currentTouchY - initialTouchY;
+
+        initialTouchX = currentTouchX;
+        initialTouchY = currentTouchY;
+      }
+    }, { passive: false }); // Make sure passive is false
+
+
+    canvas.addEventListener('touchend', () => {
+      initialTouchX = null;
+      initialTouchY = null;
     });
 
     draw();
@@ -170,39 +204,34 @@
   <!-- Floating Cuisines -->
   <script>
     const words = [
-      'Sushi', 'Ramen', 'Pho', 'Biryani', 'Tiramisu', 'Gilab Jamun',
-      'Ice cream', 'Fettuccine Alfredo', 'Loni Dosa', 'Croissant', 'Pineapple Pizza',
-      'Tempura', 'Pad Thai', 'Sashimi', 'Choco-lava cake',
-      'Kimchi', 'Masala Dosa', 'Beef Wellington', 'Chicken Cacciatore', 'Ratatouille', 
-      'Kebabs', 'Custard Tart',
+      'Sushi', 'Ramen', 'Pho', 'Biryani', 'Tiramisu', 'Gilab Jamun', 'Ice cream',
+      'Fettuccine Alfredo', 'Loni Dosa', 'Croissant', 'Pineapple Pizza', 'Tempura',
+      'Pad Thai', 'Sashimi', 'Choco-lava cake', 'Kimchi', 'Masala Dosa', 'Maki Rolls',
+      'Beef Wellington', 'Chicken Cacciatore', 'Ratatouille', 'Kebabs', 'Custard Tart',
       'Butter Chicken', 'Chole Bhature', 'Pav Bhaji', 'Aloo Paratha', 'Dal Tadka', 
-      'Malai Kofta', 
-      'Vada Pav', 'Puri Bhaji', 'Hyderabadi Biryani', 'Kachori', 'Gajar Halwa', 'Dhokla',
-      'Bhel Puri', 'Kheer', 'Jalebi', 'Mysore Pak', 'Gulab Jamun', 'Khichdi', 'Baingan Bharta', 
-      'Shahi Tukda', 'Kofta', 'Bhindi Masala', 'Pulao', 'Fried Rice', 
-      'Spring Rolls', 'Chow Mein', 
-      'Sichuan Hot Pot', 'Chinese BBQ Ribs', 
-      'Tandoori Chicken',  'Katsu Curry', 'Apple Pie', 'Mochi', 'Lobster Roll',
-      'Fajitas', 'Risotto', 'Lasagna', 'Tonkatsu', 'Maki Rolls'
+      'Malai Kofta', 'Vada Pav', 'Puri Bhaji', 'Hyderabadi Biryani', 'Kachori',
+      'Gajar Halwa', 'Dhokla', 'Bhel Puri', 'Kheer', 'Jalebi', 'Mysore Pak',
+      'Gulab Jamun', 'Khichdi', 'Baingan Bharta', 'Shahi Tukda', 'Kofta',
+      'Bhindi Masala', 'Pulao', 'Fried Rice', 'Spring Rolls', 'Chow Mein', 
+      'Sichuan Hot Pot', 'Chinese BBQ Ribs', 'Tandoori Chicken',  'Katsu Curry',
+      'Apple Pie', 'Mochi', 'Lobster Roll', 'Fajitas', 'Risotto', 'Lasagna', 'Tonkatsu'
     ];
 
     function generateWord() {
       const currentWords = document.querySelectorAll('.word');
-      if (currentWords.length >= 20) {
-        return; // Stop if there are already 20 words
-      }
+      if (currentWords.length >= 20) {return;}
 
       const word = words[Math.floor(Math.random() * words.length)];
       const wordElement = document.createElement('div');
       wordElement.textContent = word;
       
-      const size = Math.random() * (40 - 15) + 15;  // Random font size
-      const rotation = Math.random() * 360;  // Random rotation angle
-      const xPos = Math.random() * 100;  // Random horizontal position
-      const yPos = Math.random() * 100;  // Random vertical position
+      const size = Math.random() * (40 - 15) + 15;
+      const rotation = Math.random() * 360;
+      const xPos = Math.random() * 100;
+      const yPos = Math.random() * 100;
 
-      const randomX = Math.random() * 200 - 100;  // Random movement range for x-axis
-      const randomY = Math.random() * 200 - 100;  // Random movement range for y-axis
+      const randomX = Math.random() * 200 - 100;
+      const randomY = Math.random() * 200 - 100;
 
       wordElement.classList.add('word');
       wordElement.style.fontSize = `${size}px`;
@@ -210,13 +239,11 @@
       wordElement.style.top = `${yPos}vh`;
       wordElement.style.transform = `rotate(${rotation}deg)`;
 
-      // Add custom CSS properties for random movement directions
       wordElement.style.setProperty('--end-x', `${randomX}vw`);
       wordElement.style.setProperty('--end-y', `${randomY}vh`);
 
       document.body.appendChild(wordElement);
 
-      // Remove word after animation
       setTimeout(() => wordElement.remove(), 5000);
     }
 
