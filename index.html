@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Floating Cuisines with 3D Cube</title>
+<!--   <title>Floating Cuisines with 3D Cube</title> -->
+  <title>Brain Buffet</title>
   <style>
     body {
       margin: 0;
@@ -206,9 +207,7 @@
     const words = [
       'Sushi', 'Ramen', 'Sashimi', 'Tempura', 'Mochi', 'Tonkatsu', 'Katsu Curry', 'Maki Rolls', // Japan
       'Dim Sum', 'Peking Duck', 'Chow Mein', 'Spring Rolls', 'Sichuan Hot Pot', 'Chinese BBQ Ribs', 'Mapo Tofu', // China
-      'Biryani', 'Butter Chicken', 'Chole Bhature', 'Pav Bhaji', 'Aloo Paratha', 'Dal Tadka', 'Malai Kofta', 'Vada Pav', // India
-      'Puri Bhaji', 'Hyderabadi Biryani', 'Kachori', 'Gajar Halwa', 'Dhokla', 'Bhel Puri', 'Kheer', 'Jalebi', 'Mysore Pak', // India
-      'Gulab Jamun', 'Khichdi', 'Baingan Bharta', 'Shahi Tukda', 'Masala Dosa', 'Loni Dosa', 'Bhindi Masala', 'Pulao', // India
+      'Biryani', 'Butter Chicken', 'Chole Bhature', 'Pav Bhaji', 'Aloo Paratha', 'Dal Tadka', 'Malai Kofta', 'Vada Pav', 'Puri Bhaji', 'Hyderabadi Biryani', 'Kachori', 'Gajar Halwa', 'Dhokla', 'Bhel Puri', 'Kheer', 'Jalebi', 'Mysore Pak', 'Gulab Jamun', 'Khichdi', 'Baingan Bharta', 'Shahi Tukda', 'Masala Dosa', 'Loni Dosa', 'Bhindi Masala', 'Pulao', // India
       'Kimchi', 'Bibimbap', 'Tteokbokki', 'Japchae', 'Korean BBQ', 'Jjajangmyeon', 'Samgyetang', // Korea
       'Pad Thai', 'Tom Yum Soup', 'Green Curry', 'Mango Sticky Rice', 'Som Tam', 'Massaman Curry', // Thailand
       'Pho', 'Banh Mi', 'Goi Cuon (Spring Rolls)', 'Bun Cha', // Vietnam
@@ -229,31 +228,42 @@
 
     function generateWord() {
       const currentWords = document.querySelectorAll('.word');
-      if (currentWords.length >= 20) {return;}
+      if (currentWords.length >= 20) {
+        return; // Stop if there are already 20 words
+      }
 
       const word = words[Math.floor(Math.random() * words.length)];
       const wordElement = document.createElement('div');
       wordElement.textContent = word;
       
-      const size = Math.random() * (40 - 15) + 15;
-      const rotation = Math.random() * 360;
-      const xPos = Math.random() * 100;
-      const yPos = Math.random() * 100;
+      const size = Math.random() * (40 - 15) + 15;  // Random font size
+      const rotation = Math.random() * 360;  // Random rotation angle
+      const xPos = Math.random() * 100;  // Random horizontal position
+      const yPos = Math.random() * 100;  // Random vertical position
 
-      const randomX = Math.random() * 200 - 100;
-      const randomY = Math.random() * 200 - 100;
+      const randomX = Math.random() * 200 - 100;  // Random movement range for x-axis
+      const randomY = Math.random() * 200 - 100;  // Random movement range for y-axis
 
       wordElement.classList.add('word');
+      wordElement.innerHTML = `<a 
+        href="https://www.google.com/search?q=${encodeURIComponent(word)}&tbm=isch" 
+        target="_blank"
+        style="text-decoration: none; color: rgb(200,200,200); transition: color 0.3s;" 
+        onmouseover="this.style.color='rgb(255,255,255)'" 
+        onmouseout="this.style.color='rgb(200,200,200)'">
+        ${word}</a>`;
       wordElement.style.fontSize = `${size}px`;
       wordElement.style.left = `${xPos}vw`;
       wordElement.style.top = `${yPos}vh`;
       wordElement.style.transform = `rotate(${rotation}deg)`;
 
+      // Add custom CSS properties for random movement directions
       wordElement.style.setProperty('--end-x', `${randomX}vw`);
       wordElement.style.setProperty('--end-y', `${randomY}vh`);
 
       document.body.appendChild(wordElement);
 
+      // Remove word after animation
       setTimeout(() => wordElement.remove(), 5000);
     }
 
