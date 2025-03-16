@@ -204,17 +204,27 @@
   <!-- Floating Cuisines -->
   <script>
     const words = [
-      'Sushi', 'Ramen', 'Pho', 'Biryani', 'Tiramisu', 'Gilab Jamun', 'Ice cream',
-      'Fettuccine Alfredo', 'Loni Dosa', 'Croissant', 'Pineapple Pizza', 'Tempura',
-      'Pad Thai', 'Sashimi', 'Choco-lava cake', 'Kimchi', 'Masala Dosa', 'Maki Rolls',
-      'Beef Wellington', 'Chicken Cacciatore', 'Ratatouille', 'Kebabs', 'Custard Tart',
-      'Butter Chicken', 'Chole Bhature', 'Pav Bhaji', 'Aloo Paratha', 'Dal Tadka', 
-      'Malai Kofta', 'Vada Pav', 'Puri Bhaji', 'Hyderabadi Biryani', 'Kachori',
-      'Gajar Halwa', 'Dhokla', 'Bhel Puri', 'Kheer', 'Jalebi', 'Mysore Pak',
-      'Gulab Jamun', 'Khichdi', 'Baingan Bharta', 'Shahi Tukda', 'Kofta',
-      'Bhindi Masala', 'Pulao', 'Fried Rice', 'Spring Rolls', 'Chow Mein', 
-      'Sichuan Hot Pot', 'Chinese BBQ Ribs', 'Tandoori Chicken',  'Katsu Curry',
-      'Apple Pie', 'Mochi', 'Lobster Roll', 'Fajitas', 'Risotto', 'Lasagna', 'Tonkatsu'
+      'Sushi', 'Ramen', 'Sashimi', 'Tempura', 'Mochi', 'Tonkatsu', 'Katsu Curry', 'Maki Rolls', // Japan
+      'Dim Sum', 'Peking Duck', 'Chow Mein', 'Spring Rolls', 'Sichuan Hot Pot', 'Chinese BBQ Ribs', 'Mapo Tofu', // China
+      'Biryani', 'Butter Chicken', 'Chole Bhature', 'Pav Bhaji', 'Aloo Paratha', 'Dal Tadka', 'Malai Kofta', 'Vada Pav', // India
+      'Puri Bhaji', 'Hyderabadi Biryani', 'Kachori', 'Gajar Halwa', 'Dhokla', 'Bhel Puri', 'Kheer', 'Jalebi', 'Mysore Pak', // India
+      'Gulab Jamun', 'Khichdi', 'Baingan Bharta', 'Shahi Tukda', 'Masala Dosa', 'Loni Dosa', 'Bhindi Masala', 'Pulao', // India
+      'Kimchi', 'Bibimbap', 'Tteokbokki', 'Japchae', 'Korean BBQ', 'Jjajangmyeon', 'Samgyetang', // Korea
+      'Pad Thai', 'Tom Yum Soup', 'Green Curry', 'Mango Sticky Rice', 'Som Tam', 'Massaman Curry', // Thailand
+      'Pho', 'Banh Mi', 'Goi Cuon (Spring Rolls)', 'Bun Cha', // Vietnam
+      'Fettuccine Alfredo', 'Lasagna', 'Risotto', 'Tiramisu', 'Pizza Margherita', 'Gelato', // Italy
+      'Croissant', 'Ratatouille', 'Coq au Vin', 'Crème Brûlée', 'Baguette', 'Quiche Lorraine', // France
+      'Tacos', 'Fajitas', 'Enchiladas', 'Tamales', 'Churros', 'Mole Poblano', // Mexico
+      'Apple Pie', 'Lobster Roll', 'Buffalo Wings', 'Mac and Cheese', 'BBQ Ribs', // USA
+      'Kebabs', 'Hummus', 'Falafel', 'Shawarma', 'Baklava', 'Mansaf', // Middle_East
+      'Beef Wellington', 'Fish and Chips', 'Shepherd’s Pie', 'Sticky Toffee Pudding', // UK
+      'Feijoada', 'Pão de Queijo', 'Brigadeiro', // Brazil
+      'Paella', 'Churros', 'Tortilla Española', // Spain
+      'Custard Tart (Pastel de Nata)', 'Bacalhau à Brás', // Portugal
+      'Moussaka', 'Souvlaki', 'Spanakopita', // Greece
+      'Lahmacun', 'Turkish Delight', 'Iskender Kebab', // Turkey
+      'Bratwurst', 'Pretzel', 'Sauerbraten', // Germany
+      'Borscht', 'Pelmeni', 'Beef Stroganoff', // Russia
     ];
 
     function generateWord() {
