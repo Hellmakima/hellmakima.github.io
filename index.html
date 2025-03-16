@@ -127,9 +127,9 @@
 
       rotationMatrix = [[1, 0, 0], [0, 1, 0], [0, 0, 1]];
 
-      const rotY = rotateMatrix([0, 1, 0], -mouseX * 0.01);
+      const rotY = rotateMatrix([0, 1, 0], mouseX * 0.01);
       rotationMatrix = multiplyMatrices(rotY, rotationMatrix);
-      const rotX = rotateMatrix([1, 0, 0], -mouseY * 0.01);
+      const rotX = rotateMatrix([1, 0, 0], mouseY * 0.01);
       rotationMatrix = multiplyMatrices(rotX, rotationMatrix);
 
       const transformedVertices = vertices.map(vertex => multiplyMatrixVector(rotationMatrix, vertex));
