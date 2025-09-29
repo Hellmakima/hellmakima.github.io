@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,34 +13,45 @@
     <style>
         /* Define Inter font globally and set up a dark theme */
         :root {
-            --color-primary: #1F2937; /* Dark Slate */
-            --color-secondary: #0A0A0A; /* Near Black */
-            --color-accent: #3b82f6; /* Blue for highlights */
-            --color-text: #E5E7EB; /* Light Gray */
-            --color-muted: #9CA3AF; /* Gray */
+            --color-primary: #1F2937;
+            /* Dark Slate */
+            --color-secondary: #0A0A0A;
+            /* Near Black */
+            --color-accent: #3b82f6;
+            /* Blue for highlights */
+            --color-text: #E5E7EB;
+            /* Light Gray */
+            --color-muted: #9CA3AF;
+            /* Gray */
         }
+
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--color-secondary);
             color: var(--color-text);
             line-height: 1.6;
         }
+
         .container {
             max-width: 1200px;
         }
+
         /* Custom scrollbar for better aesthetics */
         ::-webkit-scrollbar {
             width: 8px;
         }
+
         ::-webkit-scrollbar-thumb {
             background: var(--color-accent);
             border-radius: 4px;
         }
+
         ::-webkit-scrollbar-track {
             background: var(--color-primary);
         }
     </style>
 </head>
+
 <body class="antialiased">
 
     <!-- Global Layout Container -->
@@ -73,7 +85,10 @@
 
                 <!-- Summary -->
                 <p class="mt-8 text-lg text-gray-300">
-                    Impact-driven Computer Science Engineer specializing in <b>scalable, multi-server backend systems</b> and AI-powered automation. Expertise includes microservices architecture, cloud deployment on GCP, and implementing <b>robust security protocols (JWT, CSRF, OAuth)</b>. Dedicated to guiding development teams towards industry-standard, secure, and resilient solutions.
+                    Impact-driven Computer Science Engineer specializing in <b>scalable, multi-server backend
+                        systems</b> and AI-powered automation. Expertise includes microservices architecture, cloud
+                    deployment on GCP, and implementing <b>robust security protocols (JWT, CSRF, OAuth)</b>. Dedicated
+                    to guiding development teams towards industry-standard, secure, and resilient solutions.
                 </p>
             </div>
 
@@ -81,11 +96,13 @@
             <div class="md:col-span-1 bg-gray-900 p-6 rounded-xl shadow-2xl">
                 <h3 class="text-lg font-bold text-blue-400 mb-4 uppercase tracking-wider">Quick Links</h3>
                 <div class="space-y-3">
-                    <a href="https://github.com/Hellmakima" target="_blank" rel="noopener noreferrer" class="flex items-center text-gray-300 hover:text-blue-400 transition">
+                    <a href="https://github.com/Hellmakima" target="_blank" rel="noopener noreferrer"
+                        class="flex items-center text-gray-300 hover:text-blue-400 transition">
                         <i data-lucide="github" class="w-5 h-5 mr-3"></i>
                         GitHub (@hellmakima)
                     </a>
-                    <a href="https://linkedin.com/in/suf1y4n" target="_blank" rel="noopener noreferrer" class="flex items-center text-gray-300 hover:text-blue-400 transition">
+                    <a href="https://linkedin.com/in/suf1y4n" target="_blank" rel="noopener noreferrer"
+                        class="flex items-center text-gray-300 hover:text-blue-400 transition">
                         <i data-lucide="linkedin" class="w-5 h-5 mr-3"></i>
                         LinkedIn (@suf1y4n)
                     </a>
@@ -93,11 +110,15 @@
 
                 <h3 class="text-lg font-bold text-blue-400 mt-6 mb-4 uppercase tracking-wider">Core Technologies</h3>
                 <div class="flex flex-wrap gap-2">
-                    <span class="px-3 py-1 bg-blue-900/30 text-blue-300 rounded-full text-xs font-semibold">FastAPI</span>
-                    <span class="px-3 py-1 bg-blue-900/30 text-blue-300 rounded-full text-xs font-semibold">Microservices</span>
+                    <span
+                        class="px-3 py-1 bg-blue-900/30 text-blue-300 rounded-full text-xs font-semibold">FastAPI</span>
+                    <span
+                        class="px-3 py-1 bg-blue-900/30 text-blue-300 rounded-full text-xs font-semibold">Microservices</span>
                     <span class="px-3 py-1 bg-blue-900/30 text-blue-300 rounded-full text-xs font-semibold">GCP</span>
-                    <span class="px-3 py-1 bg-blue-900/30 text-blue-300 rounded-full text-xs font-semibold">MongoDB/Redis</span>
-                    <span class="px-3 py-1 bg-blue-900/30 text-blue-300 rounded-full text-xs font-semibold">Security (JWT/CSRF)</span>
+                    <span
+                        class="px-3 py-1 bg-blue-900/30 text-blue-300 rounded-full text-xs font-semibold">MongoDB/Redis</span>
+                    <span class="px-3 py-1 bg-blue-900/30 text-blue-300 rounded-full text-xs font-semibold">Security
+                        (JWT/CSRF)</span>
                     <span class="px-3 py-1 bg-blue-900/30 text-blue-300 rounded-full text-xs font-semibold">NLP</span>
                 </div>
             </div>
@@ -119,61 +140,84 @@
                     <p class="text-blue-400 mb-4 text-sm font-semibold">Python, GCP, PostgreSQL, MongoDB</p>
 
                     <ul class="list-disc list-inside space-y-3 text-gray-300 ml-4">
-                        <li><b>Security & Pipeline Design:</b> Developed XSEED.ai features, including flexible question generation and automated audio/video processing, emphasizing <b>ML-based scoring pipelines</b> with robust data governance and security hardening.</li>
-                        <li><b>Integration & Efficiency:</b> Designed and deployed secure workflow automations integrating CRMs with chat/voice bots (n8n, Make.com), significantly improving efficiency and ensuring <b>auditable, authorized data transfer</b>.</li>
-                        <li>Built custom, scalable web scrapers and data pipelines to support large-scale automation projects.</li>
+                        <li><b>Design:</b> Developed XSEED.ai features, including flexible question generation and
+                            automated audio/video processing, emphasizing <b>ML-based scoring pipelines</b> with robust
+                            data governance and security hardening.</li>
+                        <li><b>Integration & Efficiency:</b> Designed and deployed secure workflow automations
+                            integrating CRMs with chat/voice bots (n8n, Make.com), significantly improving efficiency
+                            and ensuring <b>auditable, authorized data transfer</b>.</li>
+                        <li>Built custom, scalable web scrapers and data pipelines to support large-scale automation
+                            projects.</li>
                     </ul>
                 </div>
             </section>
 
             <!-- 2. ARCHITECTURAL PROJECTS (Architectural Focus) -->
             <section>
-                <h3 class="text-3xl font-bold text-white mb-6 border-b-2 border-blue-400 pb-2">Architectural Projects</h3>
+                <h3 class="text-3xl font-bold text-white mb-6 border-b-2 border-blue-400 pb-2">Architectural Projects
+                </h3>
 
                 <!-- Instagram Clone -->
                 <a href="https://github.com/hellmakima/instagram">
-                <div class="project-card mb-8 p-6 bg-gray-900 rounded-xl shadow-lg border-l-4 border-blue-600 transition hover:shadow-blue-500/20">
-                    <h4 class="text-2xl font-semibold text-white flex items-center mb-2">
-                        <i data-lucide="shield-check" class="w-6 h-6 mr-3 text-blue-400"></i>
-                        Instagram Clone (Ongoing Project)
-                    </h4>
-                    <p class="text-blue-400 mb-4 text-sm font-semibold">FastAPI, React, NextJS, MongoDB, Docker</p>
-                    <p class="text-gray-300 mb-3">
-                        <b>Goal:</b> Building a functional, scalable platform to master <b>real-world, industry-standard microservices architecture and security</b>.
-                    </p>
-                    <ul class="list-disc list-inside space-y-2 text-gray-400 ml-4 text-sm">
-                        <li><b>Architecture:</b> Implemented a robust <b>Multi-Server Microservices Architecture</b> (Auth-Server, Resource-Server) managed by an Nginx Gateway for request routing and load balancing.</li>
-                        <li><b>Security Implementation:</b> Utilizes a secure, layered authentication approach with <b>JWT Access Tokens</b> and <b>HTTP-Only Refresh Tokens</b> coupled with <b>CSRF tokens</b> for comprehensive cross-site request forgery protection, adhering to OWASP recommendations.</li>
-                        <li><b>Scalability:</b> Designed the backend using FastAPI for high performance and asynchronous operation suitable for managing real-time media and traffic.</li>
-                    </ul>
-                </div>
+                    <div
+                        class="project-card mb-8 p-6 bg-gray-900 rounded-xl shadow-lg border-l-4 border-blue-600 transition hover:shadow-blue-500/20">
+                        <h4 class="text-2xl font-semibold text-white flex items-center mb-2">
+                            <i data-lucide="shield-check" class="w-6 h-6 mr-3 text-blue-400"></i>
+                            Instagram Clone (Ongoing Project)
+                        </h4>
+                        <p class="text-blue-400 mb-4 text-sm font-semibold">FastAPI, React, NextJS, MongoDB, Docker,
+                            Nginx</p>
+                        <p class="text-gray-300 mb-3">
+                            <b>Goal:</b> Building a functional, scalable platform to master <b>real-world,
+                                industry-standard microservices architecture and security</b>.
+                        </p>
+                        <ul class="list-disc list-inside space-y-2 text-gray-400 ml-4 text-sm">
+                            <li><b>Architecture:</b> Implemented a robust <b>Multi-Server Microservices Architecture</b>
+                                (Auth-Server, Resource-Server) managed by an Nginx Gateway for request routing and load
+                                balancing.</li>
+                            <li><b>Security Implementation:</b> Utilizes a secure, layered authentication approach with
+                                <b>JWT Access Tokens</b> and <b>HTTP-Only Refresh Tokens</b> coupled with <b>CSRF
+                                    tokens</b> for comprehensive cross-site request forgery protection, adhering to
+                                OWASP recommendations.
+                            </li>
+                            <li><b>Scalability:</b> Designed the backend using FastAPI for high performance and
+                                asynchronous operation suitable for managing real-time media and traffic.</li>
+                        </ul>
+                    </div>
                 </a>
 
                 <!-- PROJECTIFY -->
-                <div class="project-card mb-8 p-6 bg-gray-900 rounded-xl shadow-lg border-l-4 border-gray-600 transition hover:shadow-gray-500/20">
+                <div
+                    class="project-card mb-8 p-6 bg-gray-900 rounded-xl shadow-lg border-l-4 border-gray-600 transition hover:shadow-gray-500/20">
                     <h4 class="text-2xl font-semibold text-white flex items-center mb-2">
                         <i data-lucide="git-branch" class="w-6 h-6 mr-3 text-gray-400"></i>
                         PROJECTIFY: Smart Project Collaboration Platform
                     </h4>
                     <p class="text-blue-400 mb-4 text-sm font-semibold">PHP, MySQL, Python (AI)</p>
                     <p class="text-gray-300 mb-3">
-                        <b>Architecture:</b> Designed a <b>polyglot backend platform</b> leveraging PHP/MySQL for transactional core services and a dedicated Python service for AI-driven project matching.
+                        <b>Architecture:</b> Designed a <b>polyglot backend platform</b> leveraging PHP/MySQL for
+                        transactional core services and a dedicated Python service for AI-driven project matching.
                     </p>
                     <ul class="list-disc list-inside space-y-2 text-gray-400 ml-4 text-sm">
-                        <li>Facilitated complex features like Git integration, Gantt planning, and a student social platform.</li>
-                        <li>Ensured a scalable backend design for seamless student collaboration and data persistence.</li>
+                        <li>Facilitated complex features like Git integration, Gantt planning, and a student social
+                            platform.</li>
+                        <li>Ensured a scalable backend design for seamless student collaboration and data persistence.
+                        </li>
                     </ul>
                 </div>
 
                 <!-- JOURNEYCRAFT -->
-                <div class="project-card mb-8 p-6 bg-gray-900 rounded-xl shadow-lg border-l-4 border-gray-600 transition hover:shadow-gray-500/20">
+                <div
+                    class="project-card mb-8 p-6 bg-gray-900 rounded-xl shadow-lg border-l-4 border-gray-600 transition hover:shadow-gray-500/20">
                     <h4 class="text-2xl font-semibold text-white flex items-center mb-2">
                         <i data-lucide="map" class="w-6 h-6 mr-3 text-gray-400"></i>
                         JOURNEYCRAFT: Travel Itinerary App
                     </h4>
                     <p class="text-blue-400 mb-4 text-sm font-semibold">Java (Android), Python, MySQL</p>
                     <p class="text-gray-300 mb-3">
-                        <b>Data Engineering:</b> Developed a custom itinerary algorithm supported by <b>scalable Python web scraping pipelines</b> to gather real-time data (ratings, spots, transport), integrating multiple external APIs (Maps, Weather).
+                        <b>Data Engineering:</b> Developed a custom itinerary algorithm supported by <b>scalable Python
+                            web scraping</b> to gather data (ratings, spots, transport), integrating
+                        multiple external APIs (Maps, Weather).
                     </p>
                 </div>
             </section>
@@ -190,7 +234,9 @@
                             <i data-lucide="server" class="w-5 h-5 mr-2"></i>
                             Backend & Architecture
                         </h4>
-                        <p class="text-gray-300">Python (FastAPI), Java, NextJS, RESTful APIs, <b>Microservices</b>, <b>JWT/OAuth2</b>, <b>Rate Limiting</b>.</p>
+                        <p class="text-gray-300">Python (FastAPI), Java, NextJS, RESTful APIs, <b>Microservices</b>,
+                            <b>JWT/OAuth2</b>, <b>Rate Limiting</b>.
+                        </p>
                     </div>
 
                     <!-- Cloud & DevOps -->
@@ -199,7 +245,8 @@
                             <i data-lucide="cloud" class="w-5 h-5 mr-2"></i>
                             Cloud & DevOps
                         </h4>
-                        <p class="text-gray-300"><b>GCP (Deployment & Services)</b>, Docker, Git, Linux, Nginx, CI/CD Principles.</p>
+                        <p class="text-gray-300"><b>GCP (Deployment & Services)</b>, Docker, Git, Linux, Nginx, CI/CD
+                            Principles.</p>
                     </div>
 
                     <!-- Data & Persistence -->
@@ -208,7 +255,8 @@
                             <i data-lucide="database" class="w-5 h-5 mr-2"></i>
                             Data & Persistence
                         </h4>
-                        <p class="text-gray-300">MongoDB, PostgreSQL, MySQL, <b>Redis (Caching/Sessions)</b>, SQL/NoSQL.</p>
+                        <p class="text-gray-300">MongoDB, PostgreSQL, MySQL, <b>Redis (Caching/Sessions)</b>, SQL/NoSQL.
+                        </p>
                     </div>
 
                     <!-- AI/ML & Tools -->
@@ -217,7 +265,8 @@
                             <i data-lucide="aperture" class="w-5 h-5 mr-2"></i>
                             AI/ML & Tools
                         </h4>
-                        <p class="text-gray-300">Scikit-learn, NLP (spaCy), Data Pipelines, Selenium, n8n, OpenCV, Pandas.</p>
+                        <p class="text-gray-300">Scikit-learn, NLP (spaCy), Data Pipelines, Selenium, n8n, OpenCV,
+                            Pandas.</p>
                     </div>
 
                 </div>
@@ -225,7 +274,8 @@
 
             <!-- 4. EDUCATION & CERTIFICATIONS -->
             <section>
-                <h3 class="text-3xl font-bold text-white mb-6 border-b-2 border-blue-400 pb-2">Education & Certifications</h3>
+                <h3 class="text-3xl font-bold text-white mb-6 border-b-2 border-blue-400 pb-2">Education &
+                    Certifications</h3>
 
                 <div class="space-y-6">
                     <!-- Education -->
@@ -253,7 +303,7 @@
 
         <!-- FOOTER -->
         <footer class="mt-16 pt-8 border-t border-gray-800 text-center text-gray-500 text-sm">
-            &copy; 2025 Sufiyan Attar. Built with focus on architecture, scalability, and security.
+            &copy; 2025 Sufiyan Attar. Built with Gemini.
         </footer>
 
     </div>
@@ -264,4 +314,5 @@
         lucide.createIcons();
     </script>
 </body>
+
 </html>
