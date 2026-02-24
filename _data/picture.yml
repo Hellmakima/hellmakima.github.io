@@ -1,0 +1,36 @@
+# _data/picture.yml
+
+presets:
+  default:
+    formats: [webp, original]
+    format_quality:
+      jpg: 90
+      webp: 95
+    markup: auto
+    link_source: true
+    dimension_attributes: true
+    noscript: true
+    attributes: 
+      img: class="lazy"
+  figure:
+    base_width: 600
+    pixel_ratios: [1, 1.5, 2]
+    format_quality:
+      jpg: 90
+      webp: 95
+    fallback_width: 600
+    link_source: true
+    attributes: 
+      img: class="lazy align-center"
+  nomarkdown:
+    nomarkdown: false
+    formats: [webp, original]
+    format_quality:
+      jpg: 90
+      webp: 95
+    markup: auto
+    link_source: true
+    dimension_attributes: true
+    noscript: true
+    attributes: 
+      img: class="lazy"
