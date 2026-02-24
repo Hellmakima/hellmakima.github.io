@@ -9,7 +9,9 @@ plugins:
   - jekyll-seo-tag
   - jekyll-include-cache
 
-minimal_mistakes_skin: "dark"
+minimal_mistakes_skin: "default"
+color_scheme: light
+accent_color: "#111111"
 
 search: true
 paginate: 5
@@ -19,7 +21,7 @@ author:
   name: "hellmakima"
   avatar: "/assets/images/avatar.png"
   bio: "Developer. Researcher. Builder."
-  location: "India"
+  location: "Kolhapur, India"
   links:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"

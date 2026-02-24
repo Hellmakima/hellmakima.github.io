@@ -1,0 +1,112 @@
+/* custom.css — force a light, neutral theme (uses !important to override theme) */
+
+/* page background & base text */
+html, body, .layout--home, .layout--page {
+  background: #ffffff !important;
+  color: #111111 !important;
+}
+
+/* hero header: remove dark overlay and use header image lightening */
+.page__hero--overlay,
+.masthead,
+.initial-content {
+  background-color: transparent !important;
+  background-image: none !important;
+  color: #111 !important;
+}
+
+/* sidebar background & text */
+.sidebar,
+.author__content,
+.author__bio {
+  background: transparent !important;
+  color: #222 !important;
+}
+
+/* avatar border neutrality */
+.author__avatar img {
+  box-shadow: none !important;
+  border: 2px solid rgba(0,0,0,0.06) !important;
+}
+
+/* links and post titles (remove pink) */
+a, a:visited, .archive__item-title a, .site-title {
+  color: #111111 !important;
+  text-decoration-color: rgba(0,0,0,0.08) !important;
+  border-bottom-color: rgba(0,0,0,0.08) !important;
+}
+
+/* hover states: subtle */
+a:hover, .archive__item-title a:hover {
+  color: #000000 !important;
+  text-decoration-color: rgba(0,0,0,0.12) !important;
+}
+
+/* meta text (dates/read time) */
+.page__meta, .page__meta-date, .page__meta-readtime, .archive__item-excerpt {
+  color: #444 !important;
+}
+
+/* featured/teaser images — remove overlay tint */
+.feature__wrapper,
+.archive__item-teaser img {
+  opacity: 1 !important;
+  filter: none !important;
+}
+
+/* buttons and pagination: neutral style */
+.btn, .btn--inverse, .pagination a, .pagination .current {
+  background: #111 !important;
+  color: #fff !important;
+  border-color: #111 !important;
+}
+
+/* make sure headings are dark */
+h1, h2, h3, h4, .page__title, .archive__item-title {
+  color: #111 !important;
+}
+
+/* code blocks, blockquotes */
+pre, code, blockquote {
+  background: #f7f7f7 !important;
+  color: #111 !important;
+  border-left: 3px solid rgba(0,0,0,0.06) !important;
+}
+
+/* forms & search input */
+input, textarea {
+  background: #fff !important;
+  color: #111 !important;
+  border-color: rgba(0,0,0,0.08) !important;
+}
+
+/* make footer light */
+.page__footer, footer {
+  background: transparent !important;
+  color: #444 !important;
+}
+
+/* remove any theme pink accent classes (common candidates) */
+[class*="accent"], [class*="pink"], .btn--accent, .site-accent, .accent-color {
+  color: #111 !important;
+  background: transparent !important;
+  border-color: transparent !important;
+}
+
+/* high specificity fallback for post links (if theme uses custom selectors) */
+.archive__item .archive__item-title a,
+.entries-list .archive__item-title a,
+.homepage-feature .archive__item-title a {
+  color: #111111 !important;
+  text-decoration-color: rgba(0,0,0,0.08) !important;
+}
+
+/* last resort: invert pink-ish rgb ranges to black-ish — helpful if theme uses CSS variables */
+*:not(svg) {
+  /* no-op placeholder; keep to preserve priority order */
+}
+
+/* small responsive polish */
+@media (max-width: 800px) {
+  .sidebar { display: none !important; } /* optional: hide sidebar on narrow */
+}
