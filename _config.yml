@@ -1,17 +1,26 @@
 title: "hellmakima"
-email: ""   # skipped as requested
-description: "personal blog"
-baseurl: ""
+description: "Infosec. Blog. Photography. Anything."
 url: "https://hellmakima.github.io"
+baseurl: ""
 
 remote_theme: "mmistakes/minimal-mistakes"
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
+  - jekyll-include-cache
 
 minimal_mistakes_skin: "dark"
 
+search: true
+paginate: 5
+paginate_path: /page:num/
+
 author:
   name: "hellmakima"
-
-permalink: /:categories/:title/
+  avatar: "/assets/images/avatar.png"
+  bio: "Developer. Researcher. Builder."
+  location: "India"
+  links:
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/hellmakima"
