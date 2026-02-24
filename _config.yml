@@ -1,0 +1,17 @@
+title: "hellmakima"
+email: ""   # skipped as requested
+description: "personal blog"
+baseurl: ""
+url: "https://hellmakima.github.io"
+
+remote_theme: "mmistakes/minimal-mistakes"
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+minimal_mistakes_skin: "dark"
+
+author:
+  name: "hellmakima"
+
+permalink: /:categories/:title/
